@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  insider_auto_message_sender_app:
+    image: 'docker-spring-boot-postgres:latest'
+    build:
+      context: .
+    container_name: insider_auto_message_sender_app
+    depends_on:
+      - insider_auto_message_sender_db
+    environment:
+      - POSTGRES_USER=insider_auto_message_sender_user
+      - POSTGRES_PASSWORD=insider_auto_message_sender_password
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://insider_auto_message_sender_db:5432/insider_auto_message_sender_db
+      - SPRING_DATASOURCE_USERNAME=insider_auto_message_sender_user
+      - SPRING_DATASOURCE_PASSWORD=insider_auto_message_sender_password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+    ports:
+      - "7777:7777"
+
+  insider_auto_message_sender_db:
+    image: postgres:latest
+    container_name: insider_auto_message_sender_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: insider_auto_message_sender_db
+      POSTGRES_USER: insider_auto_message_sender_user
+      POSTGRES_PASSWORD: insider_auto_message_sender_password
+    ports:
+      - "5432:5432"
+
+  insider_auto_message_sender_cache:
+    image: redis:latest
+    container_name: insider_auto_message_sender_cache
+    restart: unless-stopped
+    ports:
+      - "6379:6379"

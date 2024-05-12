@@ -6,14 +6,22 @@ This project is aimed at developing an automatic message sending system using Sp
 ## Installation and Configuration
 1. Clone the repository:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/mehmetbebek/insider-auto-message-sender.git
+   or via ssh
+   git clone git@github.com:mehmetbebek/insider-auto-message-sender.git
 
 2. Navigate to the project directory:
     ```
-    cd <project_directory>
+    cd insider-auto-message-sender
 3. Run Docker Compose to build and start the application:
     ```
    docker-compose up -d
+    or(if you have newer docker)
+    docker compose up -d
+    if you want to rebuild application service:
+   docker-compose up -d --no-deps --build insider_auto_message_sender_app
+    or(if you have newer docker)
+    docker compose up -d --no-deps --build insider_auto_message_sender_app
 
 ## Usage
 - Once the application is deployed and running, the automatic message sending system will start processing unsent records from the database.
@@ -27,11 +35,23 @@ This project is aimed at developing an automatic message sending system using Sp
 - Java
 - Redis
 - Docker
-- Postgres Database
+- Postgres Database(for application)
+- H2 Database(for application testing)
 - Google Phone Number Check(libphonenumber)
 
 ## Api Usages
-### Base URL
+### Postman Collection
+Postman collection is attached to test/resources folder. It can be imported to postman and start testing immediately.
+
+<img width="1836" alt="postman collection" src="https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/40d086a1-a2c6-46ce-b925-40ee142b8532">
+
+### Swagger
+Swagger is integrated and it can be used right after project running.
+
+<img width="1822" alt="swagger" src="https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/ddbf340c-1689-4d81-840c-71ebf28060e0">
+
+
+### Apis
 
 All API endpoints mentioned in this documentation are relative to the following base URL:
 

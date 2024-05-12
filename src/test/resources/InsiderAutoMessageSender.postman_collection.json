@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "5120d6de-550f-4865-8ab2-f850483db212",
+		"name": "InsiderAutoMessageSender",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "906094"
+	},
+	"item": [
+		{
+			"name": "Message",
+			"item": [
+				{
+					"name": "Create A Message",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. aliquet orci ut euismod.\",\n  \"recipientPhoneNumber\": \"+90 545 381 78 76\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:7777/insider/api/v1/messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:7777/insider/api/v1/messages"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Sent Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7777/insider/api/v1/messages?sent=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"insider",
+								"api",
+								"v1",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "sent",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Unsent Messages",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7777/insider/api/v1/messages?sent=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"insider",
+								"api",
+								"v1",
+								"messages"
+							],
+							"query": [
+								{
+									"key": "sent",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Scheduler",
+			"item": [
+				{
+					"name": "Disable Scheduler",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7777/insider/api/v1/scheduler?enabled=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"insider",
+								"api",
+								"v1",
+								"scheduler"
+							],
+							"query": [
+								{
+									"key": "enabled",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Enable Scheduler",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7777/insider/api/v1/scheduler?enabled=true",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7777",
+							"path": [
+								"insider",
+								"api",
+								"v1",
+								"scheduler"
+							],
+							"query": [
+								{
+									"key": "enabled",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Webhook",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-ins-auth-key",
+						"value": "INS.me1x9uMcyYGlhKKQVPoc.bO3j9aZwRTOcA2Ywo"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"to\": \"+905551111111\",\n\"content\": \"Insider - Project\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://webhook.site/fbdb2f77-726d-4620-b24b-b4b8ce0d8027"
+			},
+			"response": []
+		}
+	]
+}

@@ -92,6 +92,11 @@ Body: "Message scheduler enabled: true" or "Message scheduler enabled: false"
 
 ![database diagram](https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/e6932bb7-bfb8-4ce0-93e3-274788b17994)
 
+## Tests
+Added integration tests for controllers, and unit tests for service classes.
+
+<img width="733" alt="test coverage" src="https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/0576465a-16b7-45e9-90d1-f92a4f67e02c">
+
 
 ## Support
 For any issues or inquiries, please contact [Mehmet BEBEK] at [bmbebek@gmail.com].

@@ -84,5 +84,14 @@ Response:
 Status: 200 OK
 Body: "Message scheduler enabled: true" or "Message scheduler enabled: false"
 
+## Use Case Diagram
+
+![use case diagram](https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/b24b58a0-e351-443d-80a4-03088a0ca9c2)
+
+## Database Diagram
+
+![database diagram](https://github.com/mehmetbebek/insider-auto-message-sender/assets/663996/e6932bb7-bfb8-4ce0-93e3-274788b17994)
+
+
 ## Support
 For any issues or inquiries, please contact [Mehmet BEBEK] at [bmbebek@gmail.com].

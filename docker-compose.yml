@@ -8,6 +8,7 @@ services:
     container_name: insider_auto_message_sender_app
     depends_on:
       - insider_auto_message_sender_db
+      - insider_auto_message_sender_cache
     environment:
       - POSTGRES_USER=insider_auto_message_sender_user
       - POSTGRES_PASSWORD=insider_auto_message_sender_password
@@ -15,24 +16,33 @@ services:
       - SPRING_DATASOURCE_USERNAME=insider_auto_message_sender_user
       - SPRING_DATASOURCE_PASSWORD=insider_auto_message_sender_password
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-
+      - REDIS_HOST=insider_auto_message_sender_cache
     ports:
       - "7777:7777"
+    networks:
+      - insider_auto_message_sender_network
 
   insider_auto_message_sender_db:
     image: postgres:latest
     container_name: insider_auto_message_sender_db
-    restart: unless-stopped
     environment:
       POSTGRES_DB: insider_auto_message_sender_db
       POSTGRES_USER: insider_auto_message_sender_user
       POSTGRES_PASSWORD: insider_auto_message_sender_password
     ports:
       - "5432:5432"
+    networks:
+      - insider_auto_message_sender_network
 
   insider_auto_message_sender_cache:
     image: redis:latest
     container_name: insider_auto_message_sender_cache
-    restart: unless-stopped
+    hostname: insider_auto_message_sender_cache
     ports:
       - "6379:6379"
+    networks:
+      - insider_auto_message_sender_network
+
+networks:
+  insider_auto_message_sender_network:
+    driver: bridge

@@ -1,13 +1,13 @@
-FROM eclipse-temurin:17-jdk-focal
+ARG COMPILE_IMAGE="maven:3.8.4-openjdk-17-slim"
+
+FROM ${COMPILE_IMAGE} as maven_build
 
 WORKDIR /app
 
-COPY .mvn/ .mvn
+COPY . /app
 
-COPY mvnw pom.xml ./
+RUN mvn clean install -DskipTests
 
-RUN ./mvnw dependency:go-offline
+EXPOSE 8080
 
-COPY src ./src
-
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["java", "-jar", "target/automessagesender-0.0.1-SNAPSHOT.jar"]

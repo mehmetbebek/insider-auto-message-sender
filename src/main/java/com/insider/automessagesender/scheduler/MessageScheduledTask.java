@@ -21,7 +21,7 @@ public class MessageScheduledTask {
 
     private final SchedulerState schedulerState;
 
-    @Scheduled(fixedDelay = 2 * 60 * 1000) //120000 2 minutes
+    @Scheduled(fixedDelay = 2 * 60 * 1000)
     public void sendMessages() {
         if (!schedulerState.isSchedulerRunning()) {
             schedulerState.setSchedulerRunning(true);

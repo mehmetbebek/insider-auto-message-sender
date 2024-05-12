@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum WebhookResponseStatus {
-    ACCEPTED("Accepted");
+    ACCEPTED("Accepted"), REJECTED("Rejected");
 
     private final String value;
 

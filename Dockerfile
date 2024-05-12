@@ -8,6 +8,6 @@ COPY . /app
 
 RUN mvn clean install -DskipTests
 
-EXPOSE 8080
+EXPOSE 7777
 
 CMD ["java", "-jar", "target/automessagesender-0.0.1-SNAPSHOT.jar"]

@@ -36,7 +36,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_validRequest_shouldReturnCreated() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("A Valid Content","05453718713");
+        MessageRequestDto requestDto = new MessageRequestDto("A Valid Content", "05453718713");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -48,7 +48,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_missingMessageContent_shouldReturnBadRequest() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("","+905453718713");
+        MessageRequestDto requestDto = new MessageRequestDto("", "+905453718713");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -60,7 +60,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_tooLongMessageContent_shouldReturnBadRequest() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("Vestibulum interdum ligula ut iaculis suscipit. Donec eget justo ac leo laoreet laoreet vitae ac enim. Mauris eget ex luctus diam porttitor faucibus. Aenean feugiat odio in felis vulputate, in feugiat sem aliquet. Vivamus tempus est sed quam sodales faucibus ac vulputate mauris. Integer mollis mauris non purus mattis imperdiet. Proin quis fermentum massa, sit amet fringilla felis. Fusce non ullamcorper nibh. Aliquam scelerisque rhoncus egestas","+905453718713");
+        MessageRequestDto requestDto = new MessageRequestDto("Vestibulum interdum ligula ut iaculis suscipit. Donec eget justo ac leo laoreet laoreet vitae ac enim. Mauris eget ex luctus diam porttitor faucibus. Aenean feugiat odio in felis vulputate, in feugiat sem aliquet. Vivamus tempus est sed quam sodales faucibus ac vulputate mauris. Integer mollis mauris non purus mattis imperdiet. Proin quis fermentum massa, sit amet fringilla felis. Fusce non ullamcorper nibh. Aliquam scelerisque rhoncus egestas", "+905453718713");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -72,7 +72,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_missingPhoneNumber_shouldReturnBadRequest() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("","+905453718713");
+        MessageRequestDto requestDto = new MessageRequestDto("", "+905453718713");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -84,7 +84,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_invalidPhoneNumber_shouldReturnBadRequest() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("A valid message content","A dummy phone number");
+        MessageRequestDto requestDto = new MessageRequestDto("A valid message content", "A dummy phone number");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -97,7 +97,7 @@ public class MessageControllerIT {
     @Test
     public void testGetMessages_noQueryParam_shouldReturnAllMessages() throws Exception {
         List<MessageResponseDto> messages = Arrays.asList(
-                new MessageResponseDto( "Message 1"),
+                new MessageResponseDto("Message 1"),
                 new MessageResponseDto("Message 2")
         );
 

@@ -13,5 +13,5 @@ public class MessageProperties {
 
     private boolean enabledScheduler;
 
-    private String webhookToken;
+    private String webhookUrl;
 }

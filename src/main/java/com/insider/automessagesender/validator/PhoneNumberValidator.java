@@ -4,8 +4,10 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.StringUtils;
 
+@Slf4j
 public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberConstraint, String> {
 
     private final PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
@@ -26,6 +28,8 @@ public class PhoneNumberValidator implements ConstraintValidator<PhoneNumberCons
             Phonenumber.PhoneNumber trPhoneNumberConstraint = phoneUtil.parse(input, "TR");
             return phoneUtil.isPossibleNumber(trPhoneNumberConstraint);
         } catch (Exception e) {
+            log.error(message);
+            log.error(e.getMessage());
             return false;
         }
     }

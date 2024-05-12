@@ -20,7 +20,7 @@ public class WebhookMessageSender {
     private final MessageProperties messageProperties;
 
     public WebhookResponseDto sendMessage(Message message) {
-        String url =  "https://webhook.site/" + messageProperties.getWebhookToken();
+        String url = "https://webhook.site/" + messageProperties.getWebhookToken();
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);

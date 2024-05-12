@@ -1,10 +1,10 @@
 package com.insider.automessagesender.controller;
 
-import com.insider.automessagesender.util.MessageProperties;
 import com.insider.automessagesender.dto.MessageRequestDto;
 import com.insider.automessagesender.dto.MessageResponseDto;
 import com.insider.automessagesender.entity.Message;
 import com.insider.automessagesender.service.MessageService;
+import com.insider.automessagesender.util.MessageProperties;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

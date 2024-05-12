@@ -2,9 +2,7 @@ package com.insider.automessagesender.controller;
 
 import com.insider.automessagesender.dto.MessageRequestDto;
 import com.insider.automessagesender.dto.MessageResponseDto;
-import com.insider.automessagesender.entity.Message;
 import com.insider.automessagesender.service.MessageService;
-import com.insider.automessagesender.util.MessageProperties;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,29 +19,16 @@ import java.util.List;
 public class MessageController {
 
     private final MessageService messageService;
-    private final MessageProperties messageProperties;
 
     @PostMapping
-    public ResponseEntity<Void> sendMessage(@Valid @RequestBody MessageRequestDto messageRequest) {
-        Message message = new Message();
-        message.setContent(messageRequest.getContent());
-        message.setRecipientPhoneNumber(messageRequest.getRecipientPhoneNumber());
-        message.setSent(false);
-
-        messageService.saveMessage(message);
+    public ResponseEntity<Void> saveMessage(@Valid @RequestBody MessageRequestDto messageRequest) {
+        messageService.saveMessage(messageRequest);
 
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping
-    public ResponseEntity<List<MessageResponseDto>> getMessages() {
-        List<MessageResponseDto> sentMessages = messageService.getSentMessages();
-        return ResponseEntity.ok(sentMessages);
-    }
-
-    @PutMapping("/scheduler")
-    public ResponseEntity<String> changeMessageSendStatus(@RequestParam boolean status) {
-        messageProperties.setEnabledScheduler(status);
-        return ResponseEntity.ok("Message send status changed to " + status);
+    public ResponseEntity<List<MessageResponseDto>> getMessages(@RequestParam(required = false) Boolean sent) {
+        return ResponseEntity.ok(messageService.getMessages(sent));
     }
 }

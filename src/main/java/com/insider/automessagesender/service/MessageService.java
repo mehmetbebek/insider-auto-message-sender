@@ -1,5 +1,6 @@
 package com.insider.automessagesender.service;
 
+import com.insider.automessagesender.dto.MessageRequestDto;
 import com.insider.automessagesender.dto.MessageResponseDto;
 import com.insider.automessagesender.dto.WebhookResponseDto;
 import com.insider.automessagesender.entity.Message;
@@ -44,13 +45,24 @@ public class MessageService {
         }
     }
 
-    public void saveMessage(Message message) {
+    public void saveMessage(MessageRequestDto messageRequest) {
+        Message message = new Message();
+        message.setContent(messageRequest.getContent());
+        message.setRecipientPhoneNumber(messageRequest.getRecipientPhoneNumber());
+        message.setSent(false);
+
         messageRepository.save(message);
     }
 
-    public List<MessageResponseDto> getSentMessages() {
-        List<Message> sentMessages = messageRepository.findAllBySent(true);
+    public List<MessageResponseDto> getMessages(Boolean sent) {
+        List<Message> messages;
 
-        return sentMessages.stream().map(item -> new MessageResponseDto(item.getContent())).toList();
+        if (sent == null) {
+            messages = messageRepository.findAll();
+        } else {
+            messages = messageRepository.findAllBySent(sent);
+        }
+
+        return messages.stream().map(item -> new MessageResponseDto(item.getContent())).toList();
     }
 }

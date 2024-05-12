@@ -11,6 +11,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -72,7 +73,7 @@ public class MessageControllerIT {
 
     @Test
     public void testSaveMessage_missingPhoneNumber_shouldReturnBadRequest() throws Exception {
-        MessageRequestDto requestDto = new MessageRequestDto("", "+905453718713");
+        MessageRequestDto requestDto = new MessageRequestDto("A test message", "");
 
         String requestAsString = objectMapper.writeValueAsString(requestDto);
 
@@ -92,6 +93,15 @@ public class MessageControllerIT {
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(requestAsString))
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    public void testGetMessages_noQueryParamAndNoResultInDb_shouldReturnNoContentStatus() throws Exception {
+
+        when(messageService.getMessages(null)).thenReturn(new ArrayList<>());
+
+        mockMvc.perform(get("/api/v1/messages"))
+                .andExpect(status().isNoContent());
     }
 
     @Test

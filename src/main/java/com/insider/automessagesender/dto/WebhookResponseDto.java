@@ -4,10 +4,7 @@ import com.insider.automessagesender.util.WebhookResponseStatus;
 import lombok.*;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Builder
-@ToString
+@Getter
 public class WebhookResponseDto {
 
     private WebhookResponseStatus message;

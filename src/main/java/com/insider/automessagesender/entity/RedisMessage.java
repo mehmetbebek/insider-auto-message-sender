@@ -10,12 +10,9 @@ import org.springframework.data.redis.core.RedisHash;
 import java.io.Serializable;
 
 @Getter
-@Setter
-@EqualsAndHashCode
 @RedisHash("messages")
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 public class RedisMessage implements Serializable {
 
     @Id

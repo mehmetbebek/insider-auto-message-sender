@@ -1,13 +1,13 @@
-# the base image
-FROM amazoncorretto:17
+FROM eclipse-temurin:17-jdk-focal
 
-# the JAR file path
-ARG JAR_FILE=target/*.jar
+WORKDIR /app
 
-# Copy the JAR file from the build context into the Docker image
-COPY ${JAR_FILE} application.jar
+COPY .mvn/ .mvn
 
-CMD apt-get update -y
+COPY mvnw pom.xml ./
 
-# Set the default command to run the Java application
-ENTRYPOINT ["java", "-Xmx2048M", "-jar", "/application.jar"]
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+
+CMD ["./mvnw", "spring-boot:run"]

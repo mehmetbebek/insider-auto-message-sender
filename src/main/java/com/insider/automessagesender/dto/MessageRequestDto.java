@@ -1,5 +1,9 @@
 package com.insider.automessagesender.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.google.i18n.phonenumbers.NumberParseException;
+import com.google.i18n.phonenumbers.PhoneNumberUtil;
+import com.google.i18n.phonenumbers.Phonenumber;
 import com.insider.automessagesender.validator.PhoneNumberConstraint;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
@@ -18,4 +22,15 @@ public class MessageRequestDto {
 
     @PhoneNumberConstraint
     private String recipientPhoneNumber;
+
+    public MessageRequestDto(String recipientPhoneNumber) {
+        this.recipientPhoneNumber = recipientPhoneNumber;
+    }
+
+    @JsonIgnore
+    public String formatPhoneNumber() throws NumberParseException {
+        PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
+        Phonenumber.PhoneNumber number = phoneUtil.parse(recipientPhoneNumber, "TR");
+        return phoneUtil.format(number, PhoneNumberUtil.PhoneNumberFormat.E164);
+    }
 }

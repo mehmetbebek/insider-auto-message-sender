@@ -18,8 +18,8 @@ public class MessageSchedulerController {
     private final MessageScheduledTask messageScheduledTask;
 
     @PutMapping
-    public ResponseEntity<String> changeMessageSendStatus(@RequestParam boolean status) {
-        messageScheduledTask.setEnabled(status);
-        return ResponseEntity.ok("Message scheduler status is changed to " + status);
+    public ResponseEntity<String> changeMessageSendStatus(@RequestParam boolean enabled) {
+        messageScheduledTask.setEnabled(enabled);
+        return ResponseEntity.ok("Message scheduler enabled: " + enabled);
     }
 }

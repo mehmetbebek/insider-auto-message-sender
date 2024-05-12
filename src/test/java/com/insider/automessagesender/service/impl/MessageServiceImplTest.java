@@ -50,7 +50,7 @@ class MessageServiceImplTest {
     void sendPendingMessages_NoUnsentMessages() {
         when(messageRepository.findTop2BySent(false)).thenReturn(Collections.emptyList());
 
-        messageService.sendPendingMessages();
+        messageService.sendPendingMessages(false);
 
         verify(messageRepository, never()).save(any(Message.class));
         verify(redisMessageService, never()).createMessage(anyString());
@@ -63,7 +63,7 @@ class MessageServiceImplTest {
                 .thenReturn(new WebhookResponseDto(WebhookResponseStatus.ACCEPTED, "1"))
                 .thenReturn(new WebhookResponseDto(WebhookResponseStatus.REJECTED, "2"));
 
-        messageService.sendPendingMessages();
+        messageService.sendPendingMessages(false);
 
         verify(messageRepository, times(1)).save(unsentMessages.get(0));
         verify(redisMessageService, times(1)).createMessage("1");

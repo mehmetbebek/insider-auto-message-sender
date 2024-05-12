@@ -26,10 +26,16 @@ public class MessageServiceImpl implements MessageService {
 
     @Transactional
     @Override
-    public void sendPendingMessages() {
+    public void sendPendingMessages(boolean firstRun) {
         log.info("Sending pending Messages");
 
-        List<Message> unsentMessages = messageRepository.findTop2BySent(false);
+        List<Message> unsentMessages;
+
+        if (firstRun) {
+            unsentMessages = messageRepository.findAllBySent(false);
+        } else {
+            unsentMessages = messageRepository.findTop2BySent(false);
+        }
 
         if (!CollectionUtils.isEmpty(unsentMessages)) {
             for (Message message : unsentMessages) {

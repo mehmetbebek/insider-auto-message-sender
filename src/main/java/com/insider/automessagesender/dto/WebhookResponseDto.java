@@ -1,7 +1,8 @@
 package com.insider.automessagesender.dto;
 
 import com.insider.automessagesender.util.WebhookResponseStatus;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 @AllArgsConstructor
 @Getter

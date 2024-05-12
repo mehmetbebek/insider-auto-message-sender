@@ -6,7 +6,7 @@ import com.insider.automessagesender.dto.MessageResponseDto;
 import java.util.List;
 
 public interface MessageService {
-    void sendPendingMessages();
+    void sendPendingMessages(boolean firstRun);
 
     void saveMessage(MessageRequestDto messageRequest);
 

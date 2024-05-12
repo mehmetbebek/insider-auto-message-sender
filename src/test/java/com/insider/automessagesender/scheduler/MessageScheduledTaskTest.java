@@ -34,7 +34,7 @@ class MessageScheduledTaskTest {
 
         messageScheduledTask.sendMessages();
 
-        verify(messageService, times(1)).sendPendingMessages();
+        verify(messageService, times(1)).sendPendingMessages(false);
         verify(schedulerState, times(1)).setSchedulerRunning(true);
         verify(schedulerState, times(1)).setSchedulerRunning(false);
     }
@@ -48,7 +48,7 @@ class MessageScheduledTaskTest {
 
         messageScheduledTask.sendMessages();
 
-        verify(messageService, never()).sendPendingMessages();
+        verify(messageService, never()).sendPendingMessages(false);
         verify(schedulerState, times(1)).setSchedulerRunning(true);
         verify(schedulerState, times(1)).setSchedulerRunning(false);
     }
@@ -59,7 +59,7 @@ class MessageScheduledTaskTest {
 
         messageScheduledTask.sendMessages();
 
-        verify(messageService, never()).sendPendingMessages();
+        verify(messageService, never()).sendPendingMessages(false);
         verify(schedulerState, never()).setSchedulerRunning(true);
         verify(schedulerState, never()).setSchedulerRunning(false);
     }

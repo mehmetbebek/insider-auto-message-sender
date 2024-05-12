@@ -2,7 +2,9 @@ package com.insider.automessagesender.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.insider.automessagesender.entity.Message;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 @AllArgsConstructor
 @Getter

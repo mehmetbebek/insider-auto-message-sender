@@ -4,7 +4,9 @@ package com.insider.automessagesender.entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import org.springframework.data.redis.core.RedisHash;
 
 import java.io.Serializable;

@@ -34,8 +34,8 @@ public class MessageController {
             tags = {"messages", "post"})
     @ApiResponses({
             @ApiResponse(
-                    responseCode = "201", content = { @Content(
-                            schema = @Schema(),
+                    responseCode = "201", content = {@Content(
+                    schema = @Schema(),
                     mediaType = "application/json")}),
             @ApiResponse(
                     responseCode = "400",
@@ -55,7 +55,7 @@ public class MessageController {
     @ApiResponses({
             @ApiResponse(
                     responseCode = "200",
-                    content = { @Content(
+                    content = {@Content(
                             schema = @Schema(implementation = MessageResponseDto.class),
                             mediaType = "application/json")}),
             @ApiResponse(

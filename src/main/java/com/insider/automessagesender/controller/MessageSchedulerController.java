@@ -29,8 +29,8 @@ public class MessageSchedulerController {
             tags = {"scheduler", "put"})
     @ApiResponses({
             @ApiResponse(
-                    responseCode = "200", content = { @Content(
-                            schema = @Schema(implementation = String.class),
+                    responseCode = "200", content = {@Content(
+                    schema = @Schema(implementation = String.class),
                     mediaType = "application/json")}),
             @ApiResponse(
                     responseCode = "500",

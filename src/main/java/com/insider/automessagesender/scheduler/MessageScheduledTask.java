@@ -21,13 +21,19 @@ public class MessageScheduledTask {
 
     private final SchedulerState schedulerState;
 
-    @Scheduled(fixedDelay = 2 * 60 * 1000)
+    @Scheduled(fixedDelay = 2 * 10 * 1000)
     public void sendMessages() {
+        boolean firstRun = schedulerState.isFirstRun();
+
+        if (firstRun) {
+            schedulerState.setFirstRun(false);
+        }
+
         if (!schedulerState.isSchedulerRunning()) {
             schedulerState.setSchedulerRunning(true);
             try {
                 if (messageProperties.isEnabledScheduler()) {
-                    messageService.sendPendingMessages();
+                    messageService.sendPendingMessages(firstRun);
                 }
             } finally {
                 schedulerState.setSchedulerRunning(false);

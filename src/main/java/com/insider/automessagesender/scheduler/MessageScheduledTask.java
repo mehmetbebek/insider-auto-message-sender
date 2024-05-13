@@ -21,7 +21,7 @@ public class MessageScheduledTask {
 
     private final SchedulerState schedulerState;
 
-    @Scheduled(fixedDelay = 2 * 10 * 1000)
+    @Scheduled(fixedDelay = 2 * 60 * 1000)
     public void sendMessages() {
         boolean firstRun = schedulerState.isFirstRun();
 
